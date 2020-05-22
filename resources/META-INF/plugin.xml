@@ -2,16 +2,16 @@
     <id>io.github.whimthen.websocket</id>
     <name>The Current Time</name>
     <version>1.0</version>
-    <vendor email="whimthen@gmail.com" url="https://github.com/whimthen">WHIM THEN</vendor>
+    <vendor email="whimthen@gmail.com" url="https://github.com/whimthen/TheCurrentTime---IntelliJ-Plugin.git">WHIM THEN</vendor>
 
     <description><![CDATA[
-      A WebSocket Client Tools for IntelliJ Platform
+      A plug-in that can easily insert various formatted time when editing code.
     ]]></description>
 
-    <change-notes><![CDATA[
-      Now No Changes...............................
-    ]]>
-    </change-notes>
+<!--    <change-notes><![CDATA[-->
+<!--      Now No Changes...............................-->
+<!--    ]]>-->
+<!--    </change-notes>-->
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="173.0"/>
