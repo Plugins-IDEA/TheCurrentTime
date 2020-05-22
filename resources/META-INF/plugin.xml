@@ -1,0 +1,44 @@
+<idea-plugin>
+    <id>io.github.whimthen.websocket</id>
+    <name>The Current Time</name>
+    <version>1.0</version>
+    <vendor email="whimthen@gmail.com" url="https://github.com/whimthen">WHIM THEN</vendor>
+
+    <description><![CDATA[
+      A WebSocket Client Tools for IntelliJ Platform
+    ]]></description>
+
+    <change-notes><![CDATA[
+      Now No Changes...............................
+    ]]>
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceInterface="io.github.whimthen.time.TimePatternService"
+                            serviceImplementation="io.github.whimthen.time.impl.TimePatternServiceImpl"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="TheCurrentTime.CurrentTimeAction"
+                class="io.github.whimthen.time.CurrentTimeAction"
+                text="CurrentTimeAction"
+                description="CurrentTimeAction"/>
+        <group id="io.github.whimthen.time.CurrentTimeGroup"
+               class="io.github.whimthen.time.CurrentTimeGroup"
+               popup="true"
+               text="The Current Time"
+               description="The current time group">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </group>
+    </actions>
+
+</idea-plugin>
