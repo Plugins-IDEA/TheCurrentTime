@@ -4,6 +4,7 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TimePatternService extends PersistentStateComponent<TimePatternService.State> {
@@ -13,7 +14,8 @@ public interface TimePatternService extends PersistentStateComponent<TimePattern
     }
 
     class State {
-        public List<String> patterns;
+        public List<String> patterns = new ArrayList<>();
+        public boolean isLoaded;
     }
 
     @NotNull
@@ -23,5 +25,9 @@ public interface TimePatternService extends PersistentStateComponent<TimePattern
 
     @NotNull
     List<String> getPatterns();
+
+    void delete(String pattern);
+
+    void init();
 
 }

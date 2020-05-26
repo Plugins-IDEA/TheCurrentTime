@@ -12,8 +12,8 @@ public class CurrentTimeAction extends AnAction {
         super();
     }
 
-    public CurrentTimeAction(String pattern, String text) {
-        super(text);
+    public CurrentTimeAction(String pattern) {
+        super(pattern);
         this.pattern = pattern;
     }
 

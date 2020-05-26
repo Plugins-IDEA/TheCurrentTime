@@ -21,6 +21,10 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="TimeFormatter"
+                    anchor="right"
+                    icon="/icons/icon.png"
+                    factoryClass="io.github.whimthen.time.CurrentTimeTooWindow"/>
         <!-- Add your extensions here -->
         <applicationService serviceInterface="io.github.whimthen.time.TimePatternService"
                             serviceImplementation="io.github.whimthen.time.impl.TimePatternServiceImpl"/>
@@ -28,6 +32,21 @@
 
     <actions>
         <!-- Add your actions here -->
+        <action id="TheCurrentTime.AddPatternAction"
+                class="io.github.whimthen.time.actions.AddPatternAction"
+                icon="AllIcons.General.Add"
+                text="Add"
+                description="Add a new pattern"/>
+        <action id="TheCurrentTime.DeletePatternAction"
+                class="io.github.whimthen.time.actions.DeletePatternAction"
+                icon="AllIcons.General.Remove"
+                text="Delete"
+                description="Delete selection pattern"/>
+        <action id="TheCurrentTime.EditPatternAction"
+                class="io.github.whimthen.time.actions.EditPatternAction"
+                icon="AllIcons.Actions.EditSource"
+                text="Edit"
+                description="Edit selection pattern"/>
         <action id="TheCurrentTime.CurrentTimeAction"
                 class="io.github.whimthen.time.CurrentTimeAction"
                 text="CurrentTimeAction"

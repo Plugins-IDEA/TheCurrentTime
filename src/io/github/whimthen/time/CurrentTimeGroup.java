@@ -6,32 +6,20 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentTimeGroup extends ActionGroup {
 
+    private static final List<AnAction> actions = new ArrayList<>();
+
     @NotNull
     @Override
     public AnAction[] getChildren(@Nullable AnActionEvent anActionEvent) {
-        List<String> patterns = TimePatternService.getInstance().getPatterns();
-        final AnAction[] actions = new AnAction[patterns.size()];
-        for (int i = 0; i < patterns.size(); i++) {
-            String pattern = patterns.get(i);
-            String actionText = pattern;
-            switch (pattern) {
-                case TimeUtils.MILLISECONDS:
-                    actionText = "Milliseconds";
-                    break;
-                case TimeUtils.SECONDS:
-                    actionText = "Seconds";
-                    break;
-                case TimeUtils.NANO_TIME:
-                    actionText = "NanoTime";
-                    break;
-            }
-            actions[i] = new CurrentTimeAction(pattern, actionText);
+        if (actions.isEmpty()) {
+            TimePatternService.getInstance().getPatterns().forEach(pattern -> actions.add(new CurrentTimeAction(pattern)));
         }
-        return actions;
+        return actions.toArray(new AnAction[0]);
     }
 
 }

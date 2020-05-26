@@ -7,11 +7,13 @@ import io.github.whimthen.time.TimeUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@State(name = "io.github.whimthen.the_current_time", storages = {
-    @Storage(value = "io.github.whimthen.the_current_time.xml")
+@State(name = "io.github.whimthen.theCurrentTime", storages = {
+    @Storage(value = "io.github.whimthen.theCurrentTime.xml")
 })
 public class TimePatternServiceImpl implements TimePatternService {
 
@@ -39,11 +41,29 @@ public class TimePatternServiceImpl implements TimePatternService {
     @Override
     public List<String> getPatterns() {
         State state = get();
-        List<String> patterns = TimeUtils.getDefaultPatterns();
         if (Objects.nonNull(state.patterns) && !state.patterns.isEmpty()) {
-            patterns.addAll(state.patterns);
+            return state.patterns;
         }
-        return patterns;
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void delete(String pattern) {
+        if (!this.state.patterns.contains(pattern)) {
+            return;
+        }
+        this.state.patterns.remove(pattern);
+        loadState(this.state);
+    }
+
+    @Override
+    public void init() {
+        State state = get();
+        if (!state.isLoaded) {
+            TimeUtils.getDefaultPatterns().forEach(this::save);
+            state.isLoaded = true;
+            loadState(state);
+        }
     }
 
     @Nullable

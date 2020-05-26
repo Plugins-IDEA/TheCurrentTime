@@ -1,6 +1,11 @@
 package io.github.whimthen.time;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +13,21 @@ import java.util.List;
 public class TimeUtils {
 
     private static final ArrayList<String> patterns;
-    public static final String MILLISECONDS = "MILLISECONDS";
-    public static final String SECONDS = "SECONDS";
-    public static final String NANO_TIME = "NANO_TIME";
+    public static final String MILLISECONDS = "Milliseconds";
+    public static final String SECONDS = "Seconds";
+    public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
     static {
         patterns = new ArrayList<>();
         patterns.add(MILLISECONDS);
-        patterns.add("yyyy-MM-hh HH:mm:ss");
-        patterns.add("yyyy-MM-hh HH:mm:SSS");
-        patterns.add("yyyy-MM-hh");
+        patterns.add(YYYY_MM_DD_HH_MM_SS);
+        patterns.add("yyyy-MM-dd HH:mm:ss:SSS");
+        patterns.add("yyyy-MM-dd");
         patterns.add("yyyy");
         patterns.add("HH:mm:ss");
-        patterns.add("yyyyMMhhHHmmss");
-        patterns.add("yyyyMMhh");
+        patterns.add("yyyyMMddHHmmss");
+        patterns.add("yyyyMMdd");
         patterns.add(SECONDS);
-        patterns.add(NANO_TIME);
     }
 
     public static List<String> getDefaultPatterns() {
@@ -34,14 +38,37 @@ public class TimeUtils {
         switch (pattern) {
             case SECONDS:
                 return String.valueOf(System.currentTimeMillis() / 1000);
-            case NANO_TIME:
-                return String.valueOf(System.nanoTime());
             case MILLISECONDS:
                 return String.valueOf(System.currentTimeMillis());
             default:
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-                return formatter.format(LocalDateTime.now());
+                return formatter.format(LocalDateTime.now(ZoneId.systemDefault()));
         }
+    }
+
+    @NotNull
+    public static String getCurrent() {
+        return getCurrentTime(YYYY_MM_DD_HH_MM_SS);
+    }
+
+    @NotNull
+    public static String timestampToDate(String timestamp, String fromType) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS);
+        switch (fromType) {
+            case MILLISECONDS: {
+                return formatter.format(new Timestamp(Long.parseLong(timestamp)).toLocalDateTime());
+            }
+            case SECONDS: {
+                return formatter.format(new Timestamp(Long.parseLong(timestamp) * 1000).toLocalDateTime());
+            }
+        }
+        return "";
+    }
+
+    @NotNull
+    public static String dateToTimestamp(String date, String pattern) {
+        return String.valueOf(LocalDateTime.parse(date, DateTimeFormatter.ofPattern(pattern))
+                .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
     }
 
 }
