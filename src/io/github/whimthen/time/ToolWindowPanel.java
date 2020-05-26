@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import java.awt.*;
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -117,7 +116,6 @@ public class ToolWindowPanel extends SimpleToolWindowPanel {
         patternsTableModel.addTableModelListener(event -> {
             if (event.getType() == TableModelEvent.UPDATE) {
                 int editingRow = this.listTable.getEditingRow();
-                System.out.println(editingRow);
                 if (editingRow != -1) {
                     Object value = this.listTable.getModel().getValueAt(editingRow, 0);
                     if (Objects.nonNull(value) && StringUtils.isNotBlank(value.toString())) {

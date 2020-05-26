@@ -8,10 +8,19 @@
       A plug-in that can easily insert various formatted time when editing code.
     ]]></description>
 
-<!--    <change-notes><![CDATA[-->
-<!--      Now No Changes...............................-->
-<!--    ]]>-->
-<!--    </change-notes>-->
+    <change-notes><![CDATA[
+        <h1>Changes</h1>
+        <ul>
+            <li>Add Format Tool Window</li>
+            <li>Custom pattern</li>
+        </ul>
+
+        <h1>Fix Bugs</h1>
+        <ul>
+            <li>pattern error</li>
+        </ul>
+    ]]>
+    </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="173.0"/>
@@ -35,7 +44,7 @@
         <action id="TheCurrentTime.AddPatternAction"
                 class="io.github.whimthen.time.actions.AddPatternAction"
                 icon="AllIcons.General.Add"
-                text="Add"
+                text="Add A New Pattern&lt;Br/&gt; &lt;P Style=&quot;Color: Gray&quot;&gt;Milliseconds and Seconds &lt;Br/&gt;as Two Special Values&lt;/P&gt;"
                 description="Add a new pattern"/>
         <action id="TheCurrentTime.DeletePatternAction"
                 class="io.github.whimthen.time.actions.DeletePatternAction"
