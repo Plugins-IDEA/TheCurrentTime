@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.whimthen.websocket</id>
     <name>The Current Time</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="whimthen@gmail.com" url="https://github.com/whimthen/TheCurrentTime---IntelliJ-Plugin.git">WHIM THEN</vendor>
 
     <description><![CDATA[
