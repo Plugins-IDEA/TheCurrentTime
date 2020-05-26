@@ -9,6 +9,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <img src="https://raw.githubusercontent.com/whimthen/TheCurrentTime---IntelliJ-Plugin/master/preview/editor_popup.png" alt="editor_popup">
+        <img src="https://raw.githubusercontent.com/whimthen/TheCurrentTime---IntelliJ-Plugin/master/preview/ToolWindow.png" alt="ToolWindow">
         <h1>Changes</h1>
         <ul>
             <li>Add Format Tool Window</li>
@@ -23,7 +25,7 @@
     </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="201"/>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
